@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary — Deep Navy */
+  --color-navy-50: #e6eef5;
+  --color-navy-100: #cce5ff;
+  --color-navy-200: #9dcbf4;
+  --color-navy-300: #6eb0e8;
+  --color-navy-400: #326286;
+  --color-navy-500: #1b4f72;
+  --color-navy-600: #003857;
+  --color-navy-700: #002d47;
+  --color-navy-800: #001e31;
+  --color-navy-900: #001523;
+
+  /* Saffron — CTA Accent */
+  --color-saffron-50: #fff3e0;
+  --color-saffron-100: #ffdcc5;
+  --color-saffron-200: #ffb783;
+  --color-saffron-300: #fc8f34;
+  --color-saffron-400: #e67e22;
+  --color-saffron-500: #944a00;
+  --color-saffron-600: #713700;
+  --color-saffron-700: #5a2c00;
+
+  /* Surface — Tonal Layers */
+  --color-surface: #f8f9fb;
+  --color-surface-low: #f2f4f6;
+  --color-surface-mid: #edeef0;
+  --color-surface-high: #e7e8ea;
+  --color-surface-max: #e1e2e4;
+  --color-surface-white: #ffffff;
+
+  /* Text */
+  --color-text: #191c1e;
+  --color-text-secondary: #41474e;
+  --color-text-muted: #72787f;
+  --color-text-faint: #a0a5ab;
+  --color-outline: #c1c7cf;
+
+  /* Semantic */
+  --color-success: #1a7a3a;
+  --color-success-bg: #e8f5e9;
+  --color-danger: #ba1a1a;
+  --color-danger-bg: #ffdad6;
+  --color-warning: #7c5800;
+  --color-warning-bg: #fff3e0;
+
+  --font-family-display: 'Manrope', system-ui, sans-serif;
+  --font-family-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-body);
+  background: var(--color-surface);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* Scrollbar — minimal, unobtrusive */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-outline); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+/* ---- TYPOGRAPHY SYSTEM (Stitch: Editorial Voice) ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  color: var(--color-text);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ---- CARD SYSTEM (Stitch: Tonal Layering) ---- */
+.card {
+  background: var(--color-surface-white);
+  border-radius: 12px;
+  padding: 24px;
+  transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 32px rgba(25, 28, 30, 0.06);
+}
+
+/* ---- LABEL STAMPS (Stitch: Official Record) ---- */
+.label-stamp {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ---- FORM FIELDS (Stitch: Ghost Border) ---- */
+.form-field {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1.5px solid rgba(193, 199, 207, 0.4);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-family-body);
+  font-size: 0.9375rem;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.form-field:focus {
+  border-bottom-color: var(--color-navy-600);
+  border-bottom-width: 2px;
+}
+
+.form-field::placeholder {
+  color: var(--color-text-faint);
+}
+
+.form-select {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1.5px solid rgba(193, 199, 207, 0.4);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-family-body);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2372787f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+}
+
+.form-select:focus {
+  border-bottom-color: var(--color-navy-600);
+  border-bottom-width: 2px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
+/* ---- BUTTONS (Stitch: Architectural Primitives) ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-navy-600);
+  color: #ffffff;
+  font-family: var(--font-family-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 32px rgba(25, 28, 30, 0.1);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-saffron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-saffron-500);
+  color: #ffffff;
+  font-family: var(--font-family-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-saffron:hover {
+  box-shadow: 0 12px 32px rgba(148, 74, 0, 0.15);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 28px;
+  border: 1.5px solid var(--color-navy-600);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-navy-600);
+  font-family: var(--font-family-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--color-navy-600);
+  color: #ffffff;
+}
+
+/* ---- STATUS BADGES ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-active { background: var(--color-success-bg); color: var(--color-success); }
+.badge-closed { background: var(--color-danger-bg); color: var(--color-danger); }
+.badge-category { background: var(--color-surface-low); color: var(--color-text-secondary); }
+
+/* ---- MATCH SCORE BAR ---- */
+.score-bar {
+  height: 6px;
+  background: var(--color-surface-max);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.score-high { background: var(--color-success); }
+.score-mid { background: var(--color-warning); }
+.score-low { background: var(--color-text-muted); }
+
+/* ---- SPINNER ---- */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-surface-max);
+  border-top-color: var(--color-navy-500);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- MARKDOWN CONTENT (Chat) ---- */
+.md-content h3 { font-size: 1rem; font-weight: 700; margin: 10px 0 4px; }
+.md-content p { margin: 4px 0; }
+.md-content ul { padding-left: 1.2rem; margin: 4px 0; }
+.md-content li { margin: 2px 0; }
+.md-content strong { color: var(--color-navy-600); }
+.md-content a { color: var(--color-navy-400); text-decoration: underline; }
