@@ -1,8 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "npm --prefix frontend run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "frontend/dist",
-  "installCommand": "npm --prefix frontend install && npm --prefix backend install",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/serverless.js" },
     { "source": "/(.*)", "destination": "/index.html" }

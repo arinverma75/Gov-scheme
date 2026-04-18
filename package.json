@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "AI-powered Government Scheme Awareness Platform"
+  "description": "AI-powered Government Scheme Awareness Platform",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=frontend"
+  }
 }
