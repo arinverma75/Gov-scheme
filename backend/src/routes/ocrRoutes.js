@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
+import { put } from '@vercel/blob';
+import { v4 as uuidv4 } from 'uuid';
 
 const router = Router();
 
@@ -20,7 +22,7 @@ const upload = multer({
 // POST /api/ocr/scan - Upload document for OCR
 // Note: Actual OCR is done client-side with Tesseract.js for privacy
 // This endpoint handles file upload and returns base64 data
-router.post('/scan', upload.single('document'), (req, res) => {
+router.post('/scan', upload.single('document'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ 
@@ -33,13 +35,30 @@ router.post('/scan', upload.single('document'), (req, res) => {
     const base64 = req.file.buffer.toString('base64');
     const dataUrl = `data:${req.file.mimetype};base64,${base64}`;
 
+    // Store in Vercel Blob (optional - only if token exists)
+    let blobUrl = null;
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      try {
+        const filename = `ocr/${uuidv4()}-${req.file.originalname}`;
+        const blob = await put(filename, req.file.buffer, {
+          access: 'public',
+          contentType: req.file.mimetype
+        });
+        blobUrl = blob.url;
+      } catch (blobErr) {
+        console.warn('Blob storage failed:', blobErr.message);
+        // Continue without blob storage - not critical
+      }
+    }
+
     res.json({
       success: true,
       file: {
         originalName: req.file.originalname,
         size: req.file.size,
         mimetype: req.file.mimetype,
-        dataUrl
+        dataUrl,
+        ...(blobUrl && { blobUrl })
       },
       message: 'Document uploaded successfully. OCR processing happens client-side for privacy.'
     });

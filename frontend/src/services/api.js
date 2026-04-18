@@ -1,4 +1,5 @@
-const API_BASE = '/api';
+const isDev = import.meta.env.DEV;
+const API_BASE = isDev ? '/api' : '/api';
 
 async function fetchJson(url, options = {}) {
   const res = await fetch(`${API_BASE}${url}`, {
