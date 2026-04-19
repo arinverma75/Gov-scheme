@@ -1,5 +1,5 @@
 const isDev = import.meta.env.DEV;
-const API_BASE = isDev ? '/api' : '/api';
+const API_BASE = isDev ? '/api' : (import.meta.env.VITE_API_URL || 'https://govscheme-backend.onrender.com/api');
 
 async function fetchJson(url, options = {}) {
   const res = await fetch(`${API_BASE}${url}`, {
